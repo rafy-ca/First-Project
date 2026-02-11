@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Islamabad Intracity Carpool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header>
+      <h1>Islamabad Intracity Carpool</h1>
+      <p>Connect drivers and passengers for steady pick & drop with fair fuel sharing.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Join the Carpool Network</h2>
+        <form id="profile-form">
+          <div class="grid">
+            <label>
+              Role
+              <select name="role" required>
+                <option value="">Select role</option>
+                <option value="driver">Driver</option>
+                <option value="passenger">Passenger</option>
+              </select>
+            </label>
+
+            <label>
+              Full Name
+              <input type="text" name="full_name" required />
+            </label>
+
+            <label>
+              Phone
+              <input type="tel" name="phone" required />
+            </label>
+
+            <label>
+              Email
+              <input type="email" name="email" required />
+            </label>
+
+            <label>
+              Home Area (Point A)
+              <input type="text" name="home_area" required placeholder="e.g., G-11" />
+            </label>
+
+            <label>
+              Destination Area (Point B)
+              <input type="text" name="destination_area" required placeholder="e.g., Blue Area" />
+            </label>
+
+            <label>
+              Depart Time (A → B)
+              <input type="time" name="depart_time" required />
+            </label>
+
+            <label>
+              Return Time (B → A)
+              <input type="time" name="return_time" required />
+            </label>
+
+            <label>
+              Car Make
+              <input type="text" name="car_make" placeholder="Required for drivers" />
+            </label>
+
+            <label>
+              Car Model
+              <input type="text" name="car_model" placeholder="Required for drivers" />
+            </label>
+
+            <label>
+              Car Color
+              <input type="text" name="car_color" placeholder="Optional" />
+            </label>
+
+            <label>
+              Plate Number
+              <input type="text" name="plate_number" placeholder="Required for drivers" />
+            </label>
+
+            <label>
+              Seats Available
+              <input type="number" name="seats_available" min="0" max="8" placeholder="For drivers" />
+            </label>
+
+            <label>
+              Notes
+              <input type="text" name="notes" placeholder="Pickup preference, flexibility, etc." />
+            </label>
+          </div>
+
+          <fieldset>
+            <legend>Commute Days</legend>
+            <div class="days">
+              <label><input type="checkbox" name="commute_days" value="Monday" /> Monday</label>
+              <label><input type="checkbox" name="commute_days" value="Tuesday" /> Tuesday</label>
+              <label><input type="checkbox" name="commute_days" value="Wednesday" /> Wednesday</label>
+              <label><input type="checkbox" name="commute_days" value="Thursday" /> Thursday</label>
+              <label><input type="checkbox" name="commute_days" value="Friday" /> Friday</label>
+              <label><input type="checkbox" name="commute_days" value="Saturday" /> Saturday</label>
+              <label><input type="checkbox" name="commute_days" value="Sunday" /> Sunday</label>
+            </div>
+          </fieldset>
+
+          <button type="submit">Save Profile</button>
+          <p id="status" class="status"></p>
+        </form>
+      </section>
+
+      <section class="two-col">
+        <div class="card">
+          <h2>Drivers in Islamabad</h2>
+          <div id="drivers" class="list"></div>
+        </div>
+        <div class="card">
+          <h2>Passengers in Islamabad</h2>
+          <div id="passengers" class="list"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Connect & Negotiate Fuel Share</h2>
+        <form id="message-form" class="message-form">
+          <label>
+            Sender Profile ID
+            <input type="number" name="sender_id" required />
+          </label>
+          <label>
+            Receiver Profile ID
+            <input type="number" name="receiver_id" required />
+          </label>
+          <label>
+            Proposed Fuel Share (PKR/day)
+            <input type="number" name="proposed_fuel_share" min="0" step="50" />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="3" required placeholder="Suggest pickup point and cost split."></textarea>
+          </label>
+          <button type="submit">Send Message</button>
+          <p id="message-status" class="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+carpool.db
+.venv/
